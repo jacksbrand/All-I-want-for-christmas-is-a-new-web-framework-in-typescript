@@ -59,7 +59,3 @@ export class User {
       });
   }
 }
-
-// .then((response: AxiosResponse): void => {
-//   this.set(response.data);
-// });
