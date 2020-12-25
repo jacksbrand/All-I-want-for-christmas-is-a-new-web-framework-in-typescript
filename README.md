@@ -1,1 +1,1 @@
-# All I want for Christmas is a new web framework in typescript
+# All I want for Christmas is a new web framework in TypeScript
