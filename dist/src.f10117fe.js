@@ -136,10 +136,33 @@ function () {
     console.log("Clicked Me!");
   };
 
+  UserForm.prototype.onHeaderMouseOver = function () {
+    console.log("Hovering!!");
+  };
+
   UserForm.prototype.eventsMap = function () {
     return {
-      "click:button": this.onButtonClick
+      "click:button": this.onButtonClick,
+      "mouseover:h1": this.onHeaderMouseOver
     };
+  };
+
+  UserForm.prototype.bindEvents = function (fragment) {
+    var eventsMap = this.eventsMap();
+
+    var _loop_1 = function _loop_1(eventKey) {
+      var _a = eventKey.split(":"),
+          eventName = _a[0],
+          selector = _a[1];
+
+      fragment.querySelectorAll(selector).forEach(function (element) {
+        element.addEventListener(eventName, eventsMap[eventKey]);
+      });
+    };
+
+    for (var eventKey in eventsMap) {
+      _loop_1(eventKey);
+    }
   };
 
   UserForm.prototype.template = function () {
@@ -149,6 +172,7 @@ function () {
   UserForm.prototype.render = function () {
     var templateElement = document.createElement("template");
     templateElement.innerHTML = this.template();
+    this.bindEvents(templateElement.content);
     this.parent.append(templateElement.content);
   };
 
@@ -195,7 +219,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46783" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44985" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
